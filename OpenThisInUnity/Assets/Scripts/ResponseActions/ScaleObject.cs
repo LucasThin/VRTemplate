@@ -1,20 +1,31 @@
-﻿using UnityEngine;
+﻿using System.Runtime.CompilerServices;
+using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using DG.Tweening;
 
 public class ScaleObject : MonoBehaviour
 {
-    public Vector3 targetScale = Vector3.one;
-    private Vector3 originalScale = Vector3.one;
+    [Tooltip("The Animation's Duration")]
+    public float duration = 1f;
+    
+    public Vector3 targetScale;
+    private Vector3 originalScale;
 
-    public void ApplyTargetScale(XRBaseInteractable interactable)
+    private void Awake()
     {
-        originalScale = interactable.transform.localScale;
-        interactable.transform.localScale = targetScale;
+        originalScale = gameObject.transform.localScale;
+    }
+    public void ApplyTargetScale()
+    {
+        
+        transform.DOScale(targetScale, duration);
+
     }
 
-    public void ResetScale(XRBaseInteractable interactable)
+    public void ResetScale()
     {
-        interactable.transform.localScale = originalScale;
-        originalScale = Vector3.one;
+        
+        transform.DOScale(originalScale, duration);
+        
     }
 }

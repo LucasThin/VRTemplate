@@ -10,6 +10,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Rigidbody))]
 public class OnTrigger : MonoBehaviour
 {
+    [Tooltip("Only the objects with this tag name can trigger this. Can be left blank.")]
     public string requiredTag = string.Empty;
 
     [Serializable] public class TriggerEvent : UnityEvent<Collider> { }
