@@ -7,6 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 /// </summary>
 public class OnPull : MonoBehaviour
 {
+    [SerializeField] private bool _debugComments;
     [Tooltip("Distance threshold the interactor must break")]
     public float threshold = 1.0f;
 
@@ -50,10 +51,12 @@ public class OnPull : MonoBehaviour
 
                 if (withinThreshold)
                 {
+                    if(_debugComments)Debug.Log("Pull Began");
                     OnBegin.Invoke();
                 }
                 else
                 {
+                    if(_debugComments)Debug.Log("Pull Ended");
                     OnEnd.Invoke();
                 }
             }

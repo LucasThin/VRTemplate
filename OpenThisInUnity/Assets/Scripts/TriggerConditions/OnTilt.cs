@@ -8,6 +8,7 @@ using UnityEngine.Events;
 /// </summary>
 public class OnTilt : MonoBehaviour
 {
+    [SerializeField] private bool _debugComments;
     [Tooltip("Tilt range, 0 - 180 degrees")]
     [Range(0, 1)] public float threshold = 0.0f;
 
@@ -39,10 +40,12 @@ public class OnTilt : MonoBehaviour
 
             if (withinThreshold)
             {
+                if(_debugComments)Debug.Log("Tilt Begin");
                 OnBegin.Invoke(this);
             }
             else
             {
+                if(_debugComments)Debug.Log("Tilt End");
                 OnEnd.Invoke(this);
             }
         }

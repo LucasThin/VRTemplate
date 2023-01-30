@@ -7,21 +7,25 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class OnSceneLoad : MonoBehaviour
 {
+    [SerializeField] private bool _debugComments;
     // When scene is loaded and play begins
     public UnityEvent OnLoad = new UnityEvent();
 
     private void Awake()
     {
+        
         SceneManager.sceneLoaded += PlayEvent;
     }
 
     private void OnDestroy()
     {
+        
         SceneManager.sceneLoaded -= PlayEvent;
     }
 
     private void PlayEvent(Scene scene, LoadSceneMode mode)
     {
+        if(_debugComments)Debug.Log("Scene Loaded");
         OnLoad.Invoke();
     }
 }

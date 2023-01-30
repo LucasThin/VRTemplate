@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class OnButtonPress : MonoBehaviour
 {
+    [SerializeField] private bool _debugComments;
+    
     [Tooltip("Actions to check")]
     public InputAction action = null;
 
@@ -40,11 +42,13 @@ public class OnButtonPress : MonoBehaviour
 
     private void Pressed(InputAction.CallbackContext context)
     {
+        if(_debugComments) Debug.Log("Button has been pressed");
         OnPress.Invoke();
     }
 
     private void Released(InputAction.CallbackContext context)
     {
+        if(_debugComments) Debug.Log($"Button has been released");
         OnRelease.Invoke();
     }
 }

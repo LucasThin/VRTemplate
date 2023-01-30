@@ -7,6 +7,7 @@ using UnityEngine.Events;
 /// </summary>
 public class OnTimedInterval : MonoBehaviour
 {
+    [SerializeField] private bool _debugComments;
     [Tooltip("The minimum range")]
     public float minInterval = 0.0f;
 
@@ -24,6 +25,7 @@ public class OnTimedInterval : MonoBehaviour
     private IEnumerator IntervalRoutine()
     {
         float interval = Random.Range(minInterval, maxInterval);
+        if(_debugComments) Debug.Log($"random interval is {interval}");
         yield return new WaitForSeconds(interval);
 
         PlayEvent();
@@ -32,6 +34,7 @@ public class OnTimedInterval : MonoBehaviour
 
     private void PlayEvent()
     {
+        if(_debugComments)Debug.Log("Interval Elapsed");
         OnIntervalElapsed.Invoke();
     }
 }

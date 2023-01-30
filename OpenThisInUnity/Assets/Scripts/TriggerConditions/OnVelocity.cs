@@ -8,6 +8,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Rigidbody))]
 public class OnVelocity : MonoBehaviour
 {
+    [SerializeField] private bool _debugComments;
     [Tooltip("The speed calls the begin event")]
     public float beginThreshold = 1.25f;
 
@@ -52,7 +53,11 @@ public class OnVelocity : MonoBehaviour
         bool beginCheck = speed > beginThreshold;
 
         if (beginCheck)
-            OnBegin.Invoke(this);    
+        {
+            if(_debugComments) Debug.Log("Velocity began");
+            OnBegin.Invoke(this); 
+        }
+               
 
         return beginCheck;
     }
@@ -65,8 +70,11 @@ public class OnVelocity : MonoBehaviour
         bool endCheck = speed < endThreshold;
 
         if (endCheck)
+        {
+            if(_debugComments) Debug.Log("Velocity ended");
             OnEnd.Invoke(this);
-
+        }
+        
         return endCheck;
     }
 
