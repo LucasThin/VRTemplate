@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 /// <summary>
@@ -13,19 +14,24 @@ public class ShootObject : MonoBehaviour
     public Transform startPoint = null;
 
     [Tooltip("The speed at which the object is shot")]
-    public float shootSpeed = 1.0f;
-
+    public float shootSpeed = 10.0f;
+    
     public void Fire()
     {
         GameObject newObject = Instantiate(ObjectToBeShot, startPoint.position, startPoint.rotation);
-
+        
         if (newObject.TryGetComponent(out Rigidbody rigidBody))
+        {
+            rigidBody.useGravity = false;
+            rigidBody.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
             ApplyForce(rigidBody);
+        }
+            
     }
 
     private void ApplyForce(Rigidbody rigidBody)
     {
         Vector3 force = startPoint.forward * shootSpeed;
-        rigidBody.AddForce(force);
+        rigidBody.AddForce(0, 0, shootSpeed, ForceMode.Impulse);
     }
 }
