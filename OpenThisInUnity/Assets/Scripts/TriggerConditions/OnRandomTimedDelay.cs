@@ -5,14 +5,14 @@ using UnityEngine.Events;
 /// <summary>
 /// Within a range in seconds, call an event, continues for lifetime of object.
 /// </summary>
-public class OnTimedInterval : MonoBehaviour
+public class OnRandomTimedDelay : MonoBehaviour
 {
     [SerializeField] private bool _debugComments;
     [Tooltip("The minimum range")]
-    public float minInterval = 0.0f;
+    public float minTimeDelay = 0.0f;
 
     [Tooltip("The maximum range")]
-    public float maxInterval = 1.0f;
+    public float maxTimeDelay = 1.0f;
 
     // Called once the wait is over
     public UnityEvent OnIntervalElapsed = new UnityEvent();
@@ -24,8 +24,8 @@ public class OnTimedInterval : MonoBehaviour
 
     private IEnumerator IntervalRoutine()
     {
-        float interval = Random.Range(minInterval, maxInterval);
-        if(_debugComments) Debug.Log($"random interval is {interval}");
+        float interval = Random.Range(minTimeDelay, maxTimeDelay);
+        if(_debugComments) Debug.Log($"random timed delay is {interval}");
         yield return new WaitForSeconds(interval);
 
         PlayEvent();
@@ -34,7 +34,7 @@ public class OnTimedInterval : MonoBehaviour
 
     private void PlayEvent()
     {
-        if(_debugComments)Debug.Log("Interval Elapsed");
+        if(_debugComments)Debug.Log("Timed delay has Elapsed");
         OnIntervalElapsed.Invoke();
     }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 /// <summary>
 /// This script makes it easier to toggle physics on a rigidbody.
@@ -17,9 +18,10 @@ public class ApplyPhysics : MonoBehaviour
 
     public void EnablePhysics()
     {
+        
         rigidBody.collisionDetectionMode = originalMode;
-        rigidBody.useGravity = true;
         rigidBody.isKinematic = false;
+        rigidBody.useGravity = true;
     }
 
     public void DisablePhysics()
@@ -28,4 +30,5 @@ public class ApplyPhysics : MonoBehaviour
         rigidBody.useGravity = false;
         rigidBody.isKinematic = true;
     }
+    
 }
