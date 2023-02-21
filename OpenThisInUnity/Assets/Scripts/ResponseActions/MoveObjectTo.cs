@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using DG.Tweening;
 
-public class MoveObject : MonoBehaviour
+public class MoveObjectTo : MonoBehaviour
 {
     [Tooltip("The Animation's Duration in seconds")]
     public float duration = 1f;
