@@ -153,11 +153,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 226657460}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d6de8011bccf7f4f831542f0285196f, type: 3}
+  m_Script: {fileID: 11500000, guid: 05f05b2c10ba74744bc9c49ed7f67cf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveBy: 2
-  speed: 2.68
 --- !u!54 &226657462
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -588,6 +586,7 @@ GameObject:
   - component: {fileID: 1547086016}
   - component: {fileID: 1547086015}
   - component: {fileID: 1547086019}
+  - component: {fileID: 1547086014}
   m_Layer: 0
   m_Name: Trigger
   m_TagString: Untagged
@@ -595,6 +594,53 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1547086014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547086013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59fe722e016ecae438f59fbf21af3ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredTag: 
+  _debugComments: 0
+  OnEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 226657461}
+        m_TargetAssemblyTypeName: Arduino, Assembly-CSharp
+        m_MethodName: WriteSerialPort
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: On
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnStay:
+    m_PersistentCalls:
+      m_Calls: []
+  OnExit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 226657461}
+        m_TargetAssemblyTypeName: Arduino, Assembly-CSharp
+        m_MethodName: WriteSerialPort
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Of
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!65 &1547086015
 BoxCollider:
   m_ObjectHideFlags: 0
