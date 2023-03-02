@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO.Ports;
+using UnityEngine.Events;
 
 public class Arduino : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class Arduino : MonoBehaviour
     private SerialPort sp = new SerialPort(portName, portSpeed);
     private bool state;
     private string byteValue;
+
+    [SerializeField] private List<string> _TextFromArduino;
+    public UnityEvent OnArduinoText1 = new UnityEvent();
+    public UnityEvent OnArduinoText2 = new UnityEvent();
 
     void Awake()
     {
@@ -28,16 +33,17 @@ public class Arduino : MonoBehaviour
          
          if (value != null)
          {
-             //Debug.Log(value);
+             Debug.Log(value);
              
-             if (value == "on")
+             if (value == _TextFromArduino[0])
              {
-                //do something
-
+                OnArduinoText1.Invoke();
+               
              }
-             else if (value == "off")
+             if (value == _TextFromArduino[1])
              {
-                 //do something
+                 
+                OnArduinoText2.Invoke();
              }
          }
 
@@ -97,7 +103,7 @@ public class Arduino : MonoBehaviour
     public void WriteSerialPort(string text)
     {
        sp.Write(text);
-       Debug.Log(text);
+       //Debug.Log(text);
     }
 
 }
